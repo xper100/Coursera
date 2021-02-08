@@ -9,37 +9,38 @@ If the user enters anything other than a valid number catch it with a try/except
 Enter 7, 2, bob, 10, and 4 and match the output below.
 
 # Code
-largest = None
-smallest = None
-while True:
-    num = input("Enter a number: ")
-    if num == "done" : break
+
+    largest = None
+    smallest = None
+    while True:
+        num = input("Enter a number: ")
+        if num == "done" : break
     
     
-    try:
-        fnum = int(num)
-    except:
-        print("Invalid input")
-        continue
-    # Largest
-    if largest is None:
-        largest = fnum
-    elif fnum <= largest:
-        largest = largest
-    else:
-        largest = fnum
+        try:
+            fnum = int(num)
+        except:
+            print("Invalid input")
+            continue
+        # Largest
+        if largest is None:
+            largest = fnum
+        elif fnum <= largest:
+            largest = largest
+        else:
+            largest = fnum
         
         
-    # Smallest    
-    if smallest is None:
-        smallest = fnum        
-    elif fnum >= smallest:
-        smallest = smallest
-    else:
-        smallest = fnum
+        # Smallest    
+        if smallest is None:
+            smallest = fnum        
+        elif fnum >= smallest:
+            smallest = smallest
+        else:
+            smallest = fnum
         
-print("Maximum is", largest)
-print("Minimum is", smallest)
+    print("Maximum is", largest)
+    print("Minimum is", smallest)
 
 
 
@@ -55,27 +56,27 @@ You can download the sample data at http://www.py4e.com/code3/mbox-short.txt whe
 
 # Code
 
-fname = input("Enter file name: ")
-fh = open(fname)
-counts = 0
-not_count = 0
-num = 0
-tot = 0
+    fname = input("Enter file name: ")
+    fh = open(fname)
+    counts = 0
+    not_count = 0
+    num = 0
+    tot = 0
 
-for line in fh:
-    counts += 1
-    if not line.startswith("X-DSPAM-Confidence:"): 
-        not_count += 1
-        continue
-    ind = line.find(':')
-    num = line[ind+1:].strip()
+    for line in fh:
+        counts += 1
+        if not line.startswith("X-DSPAM-Confidence:"): 
+            not_count += 1
+            continue
+        ind = line.find(':')
+        num = line[ind+1:].strip()
     
-    tot += float(num)
+        tot += float(num)
         
-tot_count = counts - not_count
+    tot_count = counts - not_count
 
-average = tot/tot_count
-print("Average spam confidence:",average)
+    average = tot/tot_count
+    print("Average spam confidence:",average)
 
 
 
@@ -91,33 +92,33 @@ Once you have accumulated the counts for each hour, print out the counts, sorted
 
 
 # Code
-name = input("Enter file:")
-if len(name) < 1 : name = "mbox-short.txt"
-handle = open(name)
-hours = list()
+    name = input("Enter file:")
+    if len(name) < 1 : name = "mbox-short.txt"
+    handle = open(name)
+    hours = list()
 
 
-for line in handle:
-    line = line.rstrip()
-    words = line.split()
-    if len(line) < 1:
-        continue
-    if words[0] != 'From':
-        continue
-    time = words[-2]
-    time = time.split(':')
-    hours.append(time[0])
+    for line in handle:
+        line = line.rstrip()
+        words = line.split()
+        if len(line) < 1:
+            continue
+        if words[0] != 'From':
+            continue
+        time = words[-2]
+        time = time.split(':')
+        hours.append(time[0])
     
 
-di = dict()    
-for h in hours:
-    di[h] = di.get(h,0)+1        
+    di = dict()    
+    for h in hours:
+        di[h] = di.get(h,0)+1        
 
 
 
-tup = sorted( [   (k,v) for k,v in di.items()  ] )
+    tup = sorted( [   (k,v) for k,v in di.items()  ] )
 
-for k,v in tup:
-    print(k,v)
+    for k,v in tup:
+        print(k,v)
     
 
